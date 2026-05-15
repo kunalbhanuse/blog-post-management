@@ -14,9 +14,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useNavigate } from "react-router-dom";
 
 const API_URI = import.meta.env.VITE_API_URL;
 function CreateBlog() {
+  const navigate = useNavigate();
   const [message, setMessage] = useState("");
   const {
     register,
@@ -40,6 +42,9 @@ function CreateBlog() {
       console.log(response.data);
 
       setMessage(response.data.message);
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
     } catch (error) {
       console.log(error);
     }
