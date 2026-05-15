@@ -15,7 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const API_URI = `http://localhost:8000`;
+const API_URI = import.meta.env.VITE_API_URL;
 function CreateBlog() {
   const [message, setMessage] = useState("");
   const {

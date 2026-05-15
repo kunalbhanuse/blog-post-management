@@ -30,7 +30,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 
 function BlogList() {
-  let API_URI = `http://localhost:8000`;
+  const API_URI = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   const [blogs, setBlogs] = useState([]);
   const [page, setPage] = useState(1);

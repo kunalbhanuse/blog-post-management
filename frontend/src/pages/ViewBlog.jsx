@@ -5,7 +5,7 @@ import { ArrowLeft, CalendarDays, User2, Tag } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
-const API_URI = "http://localhost:8000";
+const API_URI = import.meta.env.VITE_API_URL;
 
 function ViewBlog() {
   const { id } = useParams();
