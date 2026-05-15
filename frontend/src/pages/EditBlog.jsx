@@ -35,10 +35,6 @@ function EditBlog() {
     resolver: zodResolver(blogUpdateSchema),
   });
 
-  // =========================
-  // FETCH SINGLE BLOG
-  // =========================
-
   const fetchBlog = async () => {
     try {
       const response = await axios.get(`${API_URI}/api/blog/${id}`);
@@ -64,10 +60,6 @@ function EditBlog() {
   useEffect(() => {
     fetchBlog();
   }, []);
-
-  // =========================
-  // UPDATE BLOG
-  // =========================
 
   const onSubmit = async (data) => {
     try {
