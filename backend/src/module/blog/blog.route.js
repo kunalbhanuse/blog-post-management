@@ -8,4 +8,6 @@ blogRouter.get("/blog/:id", controller.getBlogById);
 blogRouter.delete("/blog/:id", controller.deleteBlog);
 blogRouter.put("/blog/:id", controller.updateBlog);
 
+blogRouter.get("/blogs", controller.getAllBlog);
+
 export default blogRouter;

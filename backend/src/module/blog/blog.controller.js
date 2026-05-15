@@ -104,3 +104,59 @@ export const updateBlog = async (req, res) => {
     });
   }
 };
+
+export const getAllBlog = async (req, res) => {
+  try {
+    const page = Number(req.query.page) || 1;
+
+    const limit = Number(req.query.limit) || 5;
+
+    const skip = (page - 1) * limit;
+
+    const search = req.query.search || "";
+    const searchFilter = {
+      $or: [
+        {
+          title: {
+            $regex: search,
+            $options: "i",
+          },
+        },
+        {
+          authorName: {
+            $regex: search,
+            $options: "i",
+          },
+        },
+        {
+          category: {
+            $regex: search,
+            $options: "i",
+          },
+        },
+      ],
+    };
+
+    const totalBlogs = await Blog.countDocuments(searchFilter);
+
+    const blogs = await Blog.find(searchFilter)
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
+
+    return ApiResponse.ok(res, "Blogs fetched successfully", {
+      blogs,
+      pagination: {
+        totalBlogs,
+        currentPage: page,
+        totalPages: Math.ceil(totalBlogs / limit),
+        limit,
+      },
+    });
+  } catch (error) {
+    return res.status(error.statusCode || 500).json({
+      success: false,
+      error: error.message || "Internal Server Error",
+    });
+  }
+};
