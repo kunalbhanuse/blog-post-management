@@ -135,6 +135,12 @@ export const getAllBlog = async (req, res) => {
             $options: "i",
           },
         },
+        {
+          status: {
+            $regex: search,
+            $options: "i",
+          },
+        },
       ],
     };
 
@@ -181,6 +187,12 @@ export const exportBlogsToCSV = async (req, res) => {
         },
         {
           category: {
+            $regex: search,
+            $options: "i",
+          },
+        },
+        {
+          status: {
             $regex: search,
             $options: "i",
           },
