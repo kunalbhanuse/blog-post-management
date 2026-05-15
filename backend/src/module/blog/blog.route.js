@@ -1,0 +1,11 @@
+import { Router } from "express";
+import * as controller from "./blog.controller.js";
+
+const blogRouter = Router();
+
+blogRouter.post("/blog", controller.createBlog);
+blogRouter.get("/blog/:id", controller.getBlogById);
+blogRouter.delete("/blog/:id", controller.deleteBlog);
+blogRouter.put("/blog/:id", controller.updateBlog);
+
+export default blogRouter;
