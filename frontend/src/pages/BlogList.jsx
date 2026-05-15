@@ -97,7 +97,10 @@ function BlogList() {
               Export CSV
             </Button>
 
-            <Button className="h-11 w-full bg-violet-600 hover:bg-violet-700 text-white flex items-center gap-2 px-5 rounded-md shadow-sm transition-colors font-semibold sm:h-12 sm:w-auto">
+            <Button
+              className="h-11 w-full bg-violet-600 hover:bg-violet-700 text-white flex items-center gap-2 px-5 rounded-md shadow-sm transition-colors font-semibold sm:h-12 sm:w-auto"
+              onClick={() => navigate("/create")}
+            >
               <Plus size={16} />
               Add Post
             </Button>
