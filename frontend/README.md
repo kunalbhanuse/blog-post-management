@@ -1,16 +1,46 @@
-# React + Vite
+# Blog Management Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple blog management frontend built with React.  
+It allows you to create, view, edit, delete, and manage blog posts using a backend API.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- View all blogs in a table
+- Search blogs by keyword
+- Filter by category and status
+- Create new blog posts
+- Edit existing blog posts
+- Delete blog posts
+- Export blogs as CSV
+- Responsive design (mobile friendly)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React
+- React Hook Form
+- Zod validation
+- Axios
+- Tailwind CSS
+- ShadCN UI
+
+---
+
+## Setup
+
+### Install dependencies
+
+```bash
+npm install
+Run project
+npm run dev
+API Base URL
+http://localhost:8000/api/blog
+Pages
+Blog List Page → shows all blogs with search, filter, pagination
+Create Blog Page → form to create new blog
+Edit Blog Page → update existing blog
+```
