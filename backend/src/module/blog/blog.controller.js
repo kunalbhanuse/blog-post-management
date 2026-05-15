@@ -3,6 +3,7 @@ import ApiError from "../../common/utils/ApiError.js";
 import ApiResponse from "../../common/utils/ApiResponse.js";
 import Blog from "./blog.model.js";
 import { blogSchema, blogUpdateSchema } from "./dto/blog.dto.js";
+import { Parser } from "json2csv";
 
 export const createBlog = async (req, res) => {
   try {
@@ -155,6 +156,55 @@ export const getAllBlog = async (req, res) => {
     });
   } catch (error) {
     return res.status(error.statusCode || 500).json({
+      success: false,
+      error: error.message || "Internal Server Error",
+    });
+  }
+};
+
+export const exportBlogsToCSV = async (req, res) => {
+  try {
+    const search = req.query.search || "";
+    const searchFilter = {
+      $or: [
+        {
+          title: {
+            $regex: search,
+            $options: "i",
+          },
+        },
+        {
+          authorName: {
+            $regex: search,
+            $options: "i",
+          },
+        },
+        {
+          category: {
+            $regex: search,
+            $options: "i",
+          },
+        },
+      ],
+    };
+
+    const blogs = await Blog.find(searchFilter).lean();
+    const fields = [
+      "title",
+      "authorName",
+      "email",
+      "category",
+      "status",
+      "tags",
+      "createdAt",
+    ];
+    const parser = new Parser({ fields });
+    const csv = parser.parse(blogs);
+    res.header("Content-Type", "text/csv");
+    res.attachment("blogs.csv");
+    return res.send(csv);
+  } catch (error) {
+    return res.status(500).json({
       success: false,
       error: error.message || "Internal Server Error",
     });

@@ -1,0 +1,101 @@
+Blog Post Management System (Backend)
+
+This is a simple backend API for a Blog Post Management System built using Node.js, Express, and MongoDB
+It allows users to create, read, update, delete, search, and export blog posts.
+
+---
+
+Tech Stack
+
+- Node.js
+- Express.js
+- MongoDB + Mongoose
+- Zod (for validation)
+- json2csv (for CSV export)
+- Nodemon
+
+---
+
+What this project does
+
+Basically, this backend handles all blog operations like:
+
+- Creating a blog post
+- Viewing all blog posts
+- Updating a blog post
+- Deleting a blog post
+- Searching blogs
+- Pagination support
+- Exporting blogs to CSV
+
+---
+
+API Endpoints
+
+Blogs
+
+POST /api/blogs → Create a blog
+GET /api/blogs → Get all blogs (with search + pagination)
+GET /api/blogs/:id → Get single blog
+PUT /api/blogs/:id → Update blog
+DELETE /api/blogs/:id → Delete blog
+
+---
+
+CSV Export
+
+GET /api/blogs/export/csv
+
+This will download all blogs as a CSV file.
+
+---
+
+Search & Pagination
+
+You can search blogs like this:
+
+GET /api/blogs?search=react
+
+And use pagination like this:
+
+GET /api/blogs?page=1&limit=5
+
+You can also combine both:
+
+GET /api/blogs?search=react&page=1&limit=5
+
+---
+
+Database
+
+- MongoDB is used for storing blog data
+- Mongoose is used to define schema and interact with DB
+
+---
+
+Setup Instructions
+
+Install dependencies
+
+```bash
+npm install
+
+2. Create .env file
+MONGODB_URI=your_mongodb_connection_string
+PORT=8000
+
+3. Start the server
+npm run dev
+
+What I learned while building this
+How REST APIs work
+Pagination using skip & limit
+Searching with MongoDB queries
+CSV export functionality
+Clean backend structure with controllers and utils
+Input validation using Zod
+
+👨‍💻 Author
+Kunal Bhanuse
+
+```

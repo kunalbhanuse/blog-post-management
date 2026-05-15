@@ -9,5 +9,6 @@ blogRouter.delete("/blog/:id", controller.deleteBlog);
 blogRouter.put("/blog/:id", controller.updateBlog);
 
 blogRouter.get("/blogs", controller.getAllBlog);
+blogRouter.get("/blogs/export/csv", controller.exportBlogsToCSV);
 
 export default blogRouter;
