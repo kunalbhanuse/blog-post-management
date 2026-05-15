@@ -7,6 +7,7 @@ import { Pencil } from "lucide-react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import {
   Select,
@@ -20,6 +21,7 @@ import {
 const API_URI = `http://localhost:8000`;
 
 function EditBlog() {
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const [message, setMessage] = useState("");
@@ -78,9 +80,7 @@ function EditBlog() {
 
       setMessage(response.data.message);
 
-      setTimeout(() => {
-        setMessage("");
-      }, 3000);
+      navigate(`/view/${id}`);
     } catch (error) {
       console.log(error);
     }

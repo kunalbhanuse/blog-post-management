@@ -208,6 +208,9 @@ export const exportBlogsToCSV = async (req, res) => {
       "category",
       "status",
       "tags",
+      "shortDescription",
+      "content",
+      "thumbnail",
       "createdAt",
     ];
     const parser = new Parser({ fields });
@@ -217,6 +220,24 @@ export const exportBlogsToCSV = async (req, res) => {
     return res.send(csv);
   } catch (error) {
     return res.status(500).json({
+      success: false,
+      error: error.message || "Internal Server Error",
+    });
+  }
+};
+
+export const createMany = async (req, res) => {
+  try {
+    const blogsData = req.body;
+    if (!Array.isArray(blogsData) || blogsData.length === 0) {
+      throw ApiError.badRequest(
+        "Invalid input: 'blogs' should be a non-empty array",
+      );
+    }
+    const createdBlogs = await Blog.insertMany(blogsData);
+    return ApiResponse.created(res, "Blogs Created Successfully", createdBlogs);
+  } catch (error) {
+    return res.status(error.statusCode || 500).json({
       success: false,
       error: error.message || "Internal Server Error",
     });
